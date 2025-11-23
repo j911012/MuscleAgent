@@ -5,7 +5,7 @@ export const CalendarCard = () => {
     <section className="rounded-2xl border border-white/10 bg-[#1f1f23] p-5 shadow-sm shadow-black/40">
       <div className="flex items-center justify-between gap-2">
         <div>
-          <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500">
+          <p className="text-lg uppercase tracking-widest text-slate-500">
             Training Calendar
           </p>
         </div>
