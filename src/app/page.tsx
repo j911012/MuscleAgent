@@ -1,4 +1,3 @@
-import { CalorieCard } from "@/components/CalorieCard";
 import { CalendarCard } from "@/components/CalendarCard";
 
 export default function DashboardPage() {
