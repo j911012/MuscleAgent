@@ -1,3 +1,8 @@
+"use client";
+
+import { CalendarCard } from "@/components/CalendarCard";
+import { useState } from "react";
+
 const today = new Date();
 const weekday = today.toLocaleString("en-US", { weekday: "short" });
 const dateLabel = today.toLocaleDateString("ja-JP", {
@@ -71,7 +76,20 @@ const WeeklyTrendCard = () => {
   );
 };
 
+// カレンダーに表示させる用のトレーニング日付（モックデータ）
+const mockTrainingDays = [
+  "2025-10-31",
+  "2025-11-05",
+  "2025-11-10",
+  "2025-11-17",
+  "2025-11-20",
+  "2025-11-22",
+  "2025-12-02",
+];
+
 export default function DashboardPage() {
+  const [viewDate, setViewDate] = useState(new Date());
+
   return (
     <div className="flex flex-col gap-6">
       <section className="rounded-2xl border border-white/10 bg-[#1f1f23] p-6 text-slate-300">
@@ -109,14 +127,7 @@ export default function DashboardPage() {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[2fr_1fr]">
-        <div className="rounded-2xl border border-white/10 bg-[#1f1f23] p-4">
-          <div className="mb-4">
-            <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-              Calendar
-            </p>
-          </div>
-          <PlaceholderCard label="Calendar grid placeholder" height="h-72" />
-        </div>
+        <CalendarCard viewDate={viewDate} trainingDays={mockTrainingDays} />
 
         <WeeklyTrendCard />
       </section>
