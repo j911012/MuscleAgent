@@ -15,22 +15,8 @@ export const CalendarCard = ({ viewDate, trainingDays }: CalendarCardProps) => {
   return (
     <section className="rounded-2xl border border-white/10 bg-[#1f1f23] p-4">
       {/* ヘッダー */}
-      <header className="mb-4 flex items-center justify-between text-sm text-slate-200">
-        <button
-          type="button"
-          onClick={() => {}}
-          className="rounded-full border border-white/15 px-3 py-1 text-xs hover:border-white/30"
-        >
-          Prev
-        </button>
+      <header className="mb-4 flex items-center justify-center text-lg text-slate-200">
         <p className="font-semibold">{formatMonthTitle(viewDate)}</p>
-        <button
-          type="button"
-          onClick={() => {}}
-          className="rounded-full border border-white/15 px-3 py-1 text-xs hover:border-white/30"
-        >
-          Next
-        </button>
       </header>
 
       {/* 曜日 */}
