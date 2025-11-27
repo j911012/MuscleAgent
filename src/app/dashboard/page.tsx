@@ -76,6 +76,17 @@ const WeeklyTrendCard = () => {
   );
 };
 
+// カレンダーに表示させる用のトレーニング日付（モックデータ）
+const mockTrainingDays = [
+  "2025-10-31",
+  "2025-11-05",
+  "2025-11-10",
+  "2025-11-17",
+  "2025-11-20",
+  "2025-11-22",
+  "2025-12-02",
+];
+
 export default function DashboardPage() {
   const [viewDate, setViewDate] = useState(new Date());
 
@@ -116,7 +127,7 @@ export default function DashboardPage() {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[2fr_1fr]">
-        <CalendarCard viewDate={viewDate} />
+        <CalendarCard viewDate={viewDate} trainingDays={mockTrainingDays} />
 
         <WeeklyTrendCard />
       </section>

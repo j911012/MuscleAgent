@@ -1,12 +1,14 @@
 import { useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 type CalendarCardProps = {
   viewDate: Date;
+  trainingDays: string[];
 };
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-export const CalendarCard = ({ viewDate }: CalendarCardProps) => {
+export const CalendarCard = ({ viewDate, trainingDays }: CalendarCardProps) => {
   const todayStr = formatDate(new Date());
   const monthMatrix = useMemo(() => getMonthMatrix(viewDate), [viewDate]);
 
@@ -45,12 +47,17 @@ export const CalendarCard = ({ viewDate }: CalendarCardProps) => {
           const isCurrentMonth = date.getMonth() === viewDate.getMonth();
           const isToday = dateStr === todayStr;
 
+          const hasTraining = trainingDays.includes(dateStr);
+
           return (
             <div
               key={dateStr}
-              className={`flex h-14 flex-col items-center justify-center rounded-xl border border-transparent bg-[#18181f] text-sm ${
-                isCurrentMonth ? "text-slate-200" : "text-slate-600/60"
-              } ${isToday ? "text-red-400" : ""}`}
+              className={cn(
+                "flex h-14 flex-col items-center justify-center rounded-xl border border-transparent bg-[#18181f] text-sm",
+                isCurrentMonth ? "text-slate-200" : "text-slate-600/60",
+                isToday && "border-red-500/60",
+                hasTraining && "text-red-300"
+              )}
             >
               <span>{date.getDate()}</span>
             </div>
