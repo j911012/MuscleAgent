@@ -1,4 +1,3 @@
-import { CalorieCard } from "@/components/CalorieCard";
 import { CalendarCard } from "@/components/CalendarCard";
 
 export default function DashboardPage() {
@@ -8,9 +7,7 @@ export default function DashboardPage() {
         {/* <div className="order-2 md:order-1">
           <CalorieCard />
         </div> */}
-        <div className="order-1 md:order-2">
-          <CalendarCard />
-        </div>
+        <div className="order-1 md:order-2">{/* <CalendarCard /> */}</div>
       </section>
     </div>
   );
