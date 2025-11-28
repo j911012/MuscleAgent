@@ -2,6 +2,7 @@
 
 import { CalendarCard } from "@/components/CalendarCard";
 import { useState } from "react";
+import { StatBox } from "@/components/StatBox";
 
 const today = new Date();
 const weekday = today.toLocaleString("en-US", { weekday: "short" });
@@ -36,12 +37,12 @@ const WeeklyTrendCard = () => {
   ];
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-[#1f1f23] p-4 text-sm text-slate-300 flex flex-col justify-between">
-      <div className="flex items-center justify-between gap-3 text-xs text-slate-500">
-        <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+    <div className="grow rounded-2xl border border-white/10 bg-[#1f1f23] p-4 text-sm text-slate-300 flex flex-col justify-between">
+      <div className="flex items-center justify-between gap-4 text-xs text-slate-500">
+        <p className="flex-1 text-xs uppercase tracking-[0.2em] text-slate-500">
           Recent Progress
         </p>
-        <div className="rounded-xl border border-white/10 bg-[#18181f] px-3 py-2 text-right">
+        <div className="flex-1 rounded-xl border border-white/10 bg-[#18181f] px-3 py-2 text-left">
           <p className="text-slate-200">This week</p>
           <p className="text-base font-semibold text-slate-50">12.4 t</p>
         </div>
@@ -51,7 +52,7 @@ const WeeklyTrendCard = () => {
           {bars.map((bar) => (
             <div
               key={bar.label}
-              className="flex flex-col items-center gap-2 text-xs text-slate-500"
+              className="flex flex-col items-center gap-2 text-[10px] text-slate-500"
             >
               <div
                 className="w-3 rounded-full bg-gradient-to-t from-red-900 to-red-500"
@@ -60,16 +61,6 @@ const WeeklyTrendCard = () => {
               <span>{bar.label}</span>
             </div>
           ))}
-        </div>
-        <div className="mt-4 flex items-center justify-between rounded-xl border border-white/10 bg-[#18181f] px-4 py-3 text-xs text-slate-400">
-          <div className="text-right">
-            <p className="text-slate-200">Monthly total</p>
-            <p className="text-base font-semibold text-slate-50">48.6 t</p>
-          </div>
-          <div className="text-right">
-            <p className="text-slate-200">All-time total</p>
-            <p className="text-base font-semibold text-slate-50">205.8 t</p>
-          </div>
         </div>
       </div>
     </div>
@@ -102,18 +93,6 @@ export default function DashboardPage() {
               {dateLabel}{" "}
               <span className="text-base text-slate-400">({weekday})</span>
             </p>
-            <div className="mt-3 grid gap-3 text-xs text-slate-400 sm:grid-cols-2 lg:grid-cols-2">
-              <div className="rounded-xl border border-white/10 bg-[#18181f] px-4 py-3">
-                <p className="text-slate-200">Monthly archive</p>
-                <p className="text-base font-semibold text-slate-50">8 days</p>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-[#18181f] px-4 py-3">
-                <p className="text-slate-200">Total days</p>
-                <p className="text-base font-semibold text-slate-50">
-                  148 days
-                </p>
-              </div>
-            </div>
           </div>
           <div className="flex flex-col gap-2 md:w-64">
             <button className="rounded-full bg-red-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-500">
@@ -128,8 +107,15 @@ export default function DashboardPage() {
 
       <section className="grid gap-6 lg:grid-cols-[2fr_1fr]">
         <CalendarCard viewDate={viewDate} trainingDays={mockTrainingDays} />
-
-        <WeeklyTrendCard />
+        <div className="rounded-2xl border border-white/10 bg-[#1f1f23] p-4 flex flex-col gap-4">
+          <div className="grid grid-cols-2 gap-3">
+            <StatBox label="Monthly archive" value="8 days" />
+            <StatBox label="Total days" value="148 days" />
+            <StatBox label="Monthly total" value="48.6 t" />
+            <StatBox label="All-time total" value="205.8 t" />
+          </div>
+          <WeeklyTrendCard />
+        </div>
       </section>
 
       <section className="rounded-2xl border border-white/10 bg-[#1f1f23] p-4">
