@@ -1,8 +1,3 @@
-/**
- * domain/training/models.ts
- * ドメイン層のエンティティ／値オブジェクト／リポジトリインターフェースを定義するファイル。
- * 副作用のない型定義のみを扱う。
- */
 export type BodyPart =
   | "chest"
   | "back"
