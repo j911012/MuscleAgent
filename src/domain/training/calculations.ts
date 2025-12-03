@@ -1,3 +1,4 @@
+import { endOfWeek, startOfWeek, subWeeks } from "date-fns";
 import { TrainingSession, TrainingSet } from "./model";
 
 /**
@@ -76,20 +77,22 @@ export const buildWeeklyLoads = (
   sessions: TrainingSession[],
   referenceDate: Date
 ) => {
-  const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
   return Array.from({ length: 5 }, (_, index) => {
-    const end = new Date(referenceDate.getTime() - ONE_WEEK_MS * index);
-    const start = new Date(end.getTime() - ONE_WEEK_MS);
+    const base = subWeeks(referenceDate, index); // 基準日からindex週前の日付
+    const start = startOfWeek(base, { weekStartsOn: 0 }); // 日曜日を起点にする
+    const end = endOfWeek(base, { weekStartsOn: 0 }); // 土曜日を終点にする
     const label =
       index === 0 ? "This week" : `${index} week${index > 1 ? "s" : ""} ago`;
 
-    const totalLoadKg = sessions
-      .filter((session) => {
-        const date = new Date(session.date);
-        return start < date && date <= end;
-      })
-      .reduce((sum, session) => sum + session.totalLoadKg, 0);
+    const totalLoadKg =
+      // 週内のセッションを抽出
+      sessions
+        .filter((session) => {
+          const d = new Date(session.date);
+          return d >= start && d <= end; // セッション日付が週の開始日から終了日の間にあるかどうか
+        })
+        .reduce((sum, session) => sum + session.totalLoadKg, 0); // 週内のセッションの合計負荷を計算
 
     return { label, totalLoadKg };
-  }).reverse();
+  }).reverse(); // 最新の週から古い週の順に並べ替える
 };
