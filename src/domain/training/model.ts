@@ -37,6 +37,10 @@ export type TrainingSet = {
   updatedAt: Date;
 };
 
+export type TrainingSessionWithSets = TrainingSession & {
+  sets: TrainingSet[];
+};
+
 export type ExercisePersonalBest = {
   userId: string;
   exerciseMenuId: string;
