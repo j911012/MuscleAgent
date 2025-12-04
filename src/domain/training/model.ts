@@ -48,3 +48,17 @@ export type ExercisePersonalBest = {
   maxReps: number;
   maxOneRm: number;
 };
+
+export interface TrainingSessionRepository {
+  listByMonth(params: {
+    userId: string;
+    yearMonth: string;
+  }): Promise<TrainingSessionWithSets[]>;
+
+  findByDate(params: {
+    userId: string;
+    date: string;
+  }): Promise<TrainingSessionWithSets | null>;
+
+  save(session: TrainingSession, sets: TrainingSet[]): Promise<void>;
+}
