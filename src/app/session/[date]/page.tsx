@@ -1,7 +1,7 @@
 "use client";
 
 import { formatDateLabel } from "@/lib/data";
-import { bodyPartOptions } from "@/lib/exerciseData";
+import { bodyPartOptions, exerciseMaster } from "@/lib/exerciseData";
 import Link from "next/link";
 import { use, useState } from "react";
 
@@ -15,6 +15,8 @@ export default function SessionPage({
 
   const { date } = use(params);
   const formattedDate = formatDateLabel(date);
+
+  const exerciseOptions = selectedPart ? exerciseMaster[selectedPart] : [];
 
   return (
     <div className="space-y-6">
@@ -68,11 +70,20 @@ export default function SessionPage({
 
           <div className="rounded-xl border border-white/10 bg-[#18181f] p-3 space-y-2">
             <label className="text-xs text-slate-500">種目</label>
-            <select className="w-full rounded-lg bg-[#0f1117] px-3 py-2 text-slate-100 disabled:opacity-40">
+            <select
+              value={selectedExercise}
+              onChange={(e) => {
+                setSelectedExercise(e.target.value);
+              }}
+              disabled={!selectedPart}
+              className="w-full rounded-lg bg-[#0f1117] px-3 py-2 text-slate-100 disabled:opacity-40"
+            >
               <option value="">選択してください</option>
-              <option>ベンチプレス</option>
-              <option>インクラインダンベルプレス</option>
-              <option>加重プッシュアップ</option>
+              {exerciseOptions.map((exercise) => (
+                <option key={exercise.value} value={exercise.value}>
+                  {exercise.label}
+                </option>
+              ))}
             </select>
           </div>
         </div>
