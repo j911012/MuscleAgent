@@ -89,9 +89,106 @@ export default function SessionPage({
         </div>
 
         <div className="mt-3 flex items-center gap-3">
-          <button className="rounded-full bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-500 disabled:opacity-50">
+          <button
+            disabled={!selectedPart || !selectedExercise}
+            className="rounded-full bg-red-700 px-4 py-2 text-sm font-semibold text-white  hover:bg-red-600 hover:scale-[1.03] cursor-pointer disabled:opacity-50 disabled:scale-100 disabled:bg-slate-600 disabled:cursor-default"
+          >
             種目を追加
           </button>
+        </div>
+      </section>
+
+      {/* 3. トレーニングセッション */}
+      <section className="rounded-2xl border border-white/10 bg-[#1f1f23] p-4 text-sm text-slate-300 space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+              Step 2
+            </p>
+            <p className="font-semibold text-slate-200">セットを入力</p>
+          </div>
+          <button className="rounded-full bg-emerald-700 px-4 py-2 text-sm font-semibold text-white cursor-pointer">
+            セッションを完了
+          </button>
+        </div>
+
+        {/* 種目カード */}
+        <div className="space-y-3 rounded-xl border border-white/10 bg-[#18181f] p-3">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs text-slate-500">胸</p>
+              <p className="text-base font-semibold text-slate-100">
+                ベンチプレス
+              </p>
+            </div>
+            <button className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-slate-100 opacity-60 cursor-not-allowed">
+              セットを追加
+            </button>
+          </div>
+
+          {/* セット一覧 */}
+          <div className="space-y-2">
+            <div className="rounded-lg border border-white/10 bg-[#0f1117] p-3 space-y-2">
+              <p className="text-xs text-slate-500">Set 1</p>
+              <div className="grid grid-cols-2 gap-2 text-slate-100">
+                <input
+                  type="number"
+                  placeholder="重量 (kg)"
+                  className="rounded-md bg-[#1a1c23] px-3 py-2 text-sm opacity-60"
+                />
+                <input
+                  type="number"
+                  placeholder="回数"
+                  className="rounded-md bg-[#1a1c23] px-3 py-2 text-sm opacity-60"
+                />
+              </div>
+              <textarea
+                placeholder="メモ"
+                className="w-full rounded-md bg-[#1a1c23] px-3 py-2 text-sm text-slate-100 opacity-60"
+                rows={2}
+              />
+            </div>
+            <div className="rounded-lg border border-white/10 bg-[#0f1117] p-3 space-y-2">
+              <p className="text-xs text-slate-500">Set 2</p>
+              <div className="grid grid-cols-2 gap-2 text-slate-100">
+                <input
+                  type="number"
+                  placeholder="重量 (kg)"
+                  className="rounded-md bg-[#1a1c23] px-3 py-2 text-sm opacity-60"
+                />
+                <input
+                  type="number"
+                  placeholder="回数"
+                  className="rounded-md bg-[#1a1c23] px-3 py-2 text-sm opacity-60"
+                />
+              </div>
+              <textarea
+                placeholder="メモ"
+                className="w-full rounded-md bg-[#1a1c23] px-3 py-2 text-sm text-slate-100 opacity-60"
+                rows={2}
+              />
+            </div>
+            <div className="rounded-lg border border-white/10 bg-[#0f1117] p-3 space-y-2">
+              <p className="text-xs text-slate-500">Set 3</p>
+              <div className="grid grid-cols-2 gap-2 text-slate-100">
+                <input
+                  type="number"
+                  placeholder="重量 (kg)"
+                  className="rounded-md bg-[#1a1c23] px-3 py-2 text-sm opacity-60"
+                />
+                <input
+                  type="number"
+                  placeholder="回数"
+                  className="rounded-md bg-[#1a1c23] px-3 py-2 text-sm opacity-60"
+                />
+              </div>
+              <textarea
+                placeholder="メモ"
+                className="w-full rounded-md bg-[#1a1c23] px-3 py-2 text-sm text-slate-100 opacity-60"
+                rows={2}
+              />
+            </div>
+          </div>
         </div>
       </section>
     </div>
